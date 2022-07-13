@@ -13,7 +13,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<Widget> bodyPages = [FahsionNews(), Display(), YourMessages()];
+  List<Widget> bodyPages = [NewsPage(), Display(), YourMessages()];
   int _index = 1;
 
   @override
