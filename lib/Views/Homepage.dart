@@ -1,3 +1,8 @@
+import 'package:code_glamour/Views/Items/Display.dart';
+import 'package:code_glamour/Views/Items/FashionNews.dart';
+import 'package:code_glamour/Views/Items/chatbot.dart';
+import 'package:code_glamour/Views/Items/yourMessages.dart';
+import 'package:code_glamour/constants.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -8,8 +13,40 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List<Widget> bodyPages = [FahsionNews(), Display(), YourMessages()];
+  int _index = 1;
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          currentIndex: _index,
+          selectedItemColor: clr1,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: false,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.newspaper_rounded), label: "News"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.image_rounded), label: "Exhibits"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.chat_bubble_outline_rounded),
+                label: "Your Messages"),
+          ],
+          onTap: (int index) {
+            setState(() {
+              _index = index;
+            });
+          },
+        ),
+        body: Stack(
+          children: [
+            IndexedStack(
+              index: _index,
+              children: bodyPages,
+            ),
+          ],
+        ));
   }
 }

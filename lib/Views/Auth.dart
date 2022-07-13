@@ -44,15 +44,16 @@ class _AuthScreenState extends State<AuthScreen> {
                             children: <Widget>[
                               SizedBox(height: 65),
                               Image.asset(
-                                'assets/images/environment.png',
+                                'assets/images/intro.png',
                                 height: 250,
                               ),
+                              SizedBox(height: 30),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    Text("Code:Veggie",
+                    Text("Code:Glamour",
                         style: TextStyle(
                             color: clr1, letterSpacing: 3, fontSize: 24)),
                     Form(
@@ -68,7 +69,6 @@ class _AuthScreenState extends State<AuthScreen> {
                                   hintText: 'ex: test@gmail.com',
                                 ),
                                 onChanged: (value) {
-                                  print(value);
                                   _email = value;
                                 },
                                 validator: (value) {}),
