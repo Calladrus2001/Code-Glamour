@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:code_glamour/Views/Profile/YourExhibits.dart';
 import 'package:code_glamour/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -33,6 +37,13 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        child: Icon(Icons.logout, color: clr1),
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
@@ -79,7 +90,7 @@ class _ProfileState extends State<Profile> {
                             padding: EdgeInsets.symmetric(horizontal: 4),
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: tags.length,
+                            itemCount: min(tags.length, 4),
                             itemBuilder: (context, int index) {
                               return Row(
                                 children: [
@@ -125,25 +136,11 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     onTap: () {
-                      /// take to chat page
+                      Get.to(() => YourExhibits());
                     },
                   )
                 : SizedBox(),
             SizedBox(height: 20),
-            GestureDetector(
-              child: CircleAvatar(
-                backgroundColor: clr1,
-                minRadius: 24.5,
-                child: CircleAvatar(
-                  minRadius: 23,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.logout, color: clr1),
-                ),
-              ),
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-              },
-            )
           ],
         ),
       ),

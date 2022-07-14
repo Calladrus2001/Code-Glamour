@@ -1,4 +1,4 @@
-import 'package:code_glamour/Views/Items/Display.dart';
+import 'package:code_glamour/Views/Items/Exhibits.dart';
 import 'package:code_glamour/Views/Items/FashionNews.dart';
 import 'package:code_glamour/Views/Profile/Profile.dart';
 import 'package:code_glamour/constants.dart';
@@ -12,7 +12,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<Widget> bodyPages = [Profile(), Display(), NewsPage()];
+  List<Widget> bodyPages = [Profile(), Exhibit(), NewsPage()];
   int _index = 1;
 
   @override
