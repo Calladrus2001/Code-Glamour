@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_glamour/Views/Profile/YourExhibits.dart';
+import 'package:code_glamour/Views/Profile/YourMessages.dart';
 import 'package:code_glamour/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +121,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               onTap: () {
-                /// take to chat page
+                Get.to(() => Messages());
               },
             ),
             isDesigner ? SizedBox(height: 5) : SizedBox(),

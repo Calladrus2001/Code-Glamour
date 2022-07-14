@@ -47,7 +47,7 @@ class _ExhibitState extends State<Exhibit> {
       ),
       body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 6, mainAxisSpacing: 6),
+              crossAxisCount: 2, crossAxisSpacing: 6, mainAxisSpacing: 8),
           itemCount: snaps.length,
           itemBuilder: (context, int index) {
             return GestureDetector(
@@ -58,7 +58,7 @@ class _ExhibitState extends State<Exhibit> {
                 ),
                 footer: Container(
                     padding: EdgeInsets.only(left: 8, top: 2, bottom: 1),
-                    color: Colors.grey.withOpacity(0.25),
+                    color: Colors.grey.withOpacity(0.33),
                     child: Text(
                       snaps[index]["CreatedBy"],
                       style: TextStyle(color: Colors.white),
