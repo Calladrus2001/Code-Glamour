@@ -27,7 +27,7 @@ class _NewsPageState extends State<NewsPage> {
   @override
   void initState() {
     super.initState();
-    getData();
+    // getData();
   }
 
   @override

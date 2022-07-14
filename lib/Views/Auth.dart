@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_glamour/Views/Homepage.dart';
 import 'package:code_glamour/constants.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +10,34 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool hasAccount = false;
+  bool hasAccount = true;
+  bool isDesigner = false;
   final emailController = new TextEditingController();
   final passController = new TextEditingController();
+  String _email = "";
+  String _password = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  CollectionReference users = FirebaseFirestore.instance.collection("Users");
+
   @override
   Widget build(BuildContext context) {
-    String _email = "";
-    String _password = "";
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return clr1;
+      }
+      return clr1;
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: StreamBuilder<User?>(
@@ -84,7 +106,38 @@ class _AuthScreenState extends State<AuthScreen> {
                               },
                               validator: (value) {},
                             ),
-                            SizedBox(height: 48),
+                            SizedBox(height: 36),
+
+                            /// designer checkbox
+                            hasAccount
+                                ? Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Are you a Designer?",
+                                            style:
+                                                TextStyle(color: Colors.grey),
+                                          ),
+                                          Checkbox(
+                                              value: isDesigner,
+                                              checkColor: Colors.white,
+                                              fillColor: MaterialStateProperty
+                                                  .resolveWith(getColor),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  isDesigner = !isDesigner;
+                                                });
+                                                print(isDesigner);
+                                              })
+                                        ],
+                                      ),
+                                      SizedBox(height: 24),
+                                    ],
+                                  )
+                                : SizedBox(),
 
                             /// login/register button
 
@@ -121,6 +174,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                   onTap: () {
                                     if (hasAccount) {
                                       SignUp(_email, _password);
+                                      users
+                                          .doc(_email)
+                                          .set({"Designer": isDesigner});
                                     } else {
                                       SignIn(_email, _password);
                                     }

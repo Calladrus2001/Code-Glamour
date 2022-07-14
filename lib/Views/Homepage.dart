@@ -1,7 +1,6 @@
 import 'package:code_glamour/Views/Items/Display.dart';
 import 'package:code_glamour/Views/Items/FashionNews.dart';
-import 'package:code_glamour/Views/Items/chatbot.dart';
-import 'package:code_glamour/Views/Items/yourMessages.dart';
+import 'package:code_glamour/Views/Profile/Profile.dart';
 import 'package:code_glamour/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<Widget> bodyPages = [NewsPage(), Display(), YourMessages()];
+  List<Widget> bodyPages = [Profile(), Display(), NewsPage()];
   int _index = 1;
 
   @override
@@ -27,12 +26,12 @@ class _HomepageState extends State<Homepage> {
           showUnselectedLabels: false,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.newspaper_rounded), label: "News"),
+                icon: Icon(Icons.account_circle_rounded),
+                label: "Your Profile"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.image_rounded), label: "Exhibits"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.chat_bubble_outline_rounded),
-                label: "Your Messages"),
+                icon: Icon(Icons.newspaper_rounded), label: "News"),
           ],
           onTap: (int index) {
             setState(() {
