@@ -120,6 +120,7 @@ class _AddExhibitState extends State<AddExhibit> {
                     "description": descController.text,
                     "imageUrl": downloadUrl
                   });
+                  Navigator.pop(context);
                 },
               )
             ],

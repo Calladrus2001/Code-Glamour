@@ -17,16 +17,16 @@ class _ExhibitState extends State<Exhibit> {
 
   @override
   void initState() {
-    // FirebaseFirestore.instance
-    //     .collection('Exhibits')
-    //     .get()
-    //     .then((QuerySnapshot querySnapshot) {
-    //   querySnapshot.docs.forEach((doc) {
-    //     setState(() {
-    //       snaps.add(doc);
-    //     });
-    //   });
-    // });
+    FirebaseFirestore.instance
+        .collection('Exhibits')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        setState(() {
+          snaps.add(doc);
+        });
+      });
+    });
     super.initState();
   }
 
@@ -45,30 +45,30 @@ class _ExhibitState extends State<Exhibit> {
           Get.to(() => Chatbot());
         },
       ),
-      // body: GridView.builder(
-      //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-      //         crossAxisCount: 2, crossAxisSpacing: 6, mainAxisSpacing: 8),
-      //     itemCount: snaps.length,
-      //     itemBuilder: (context, int index) {
-      //       return GestureDetector(
-      //         child: GridTile(
-      //           child: Ink.image(
-      //             image: NetworkImage(snaps[index]["imageUrl"]),
-      //             fit: BoxFit.cover,
-      //           ),
-      //           footer: Container(
-      //               padding: EdgeInsets.only(left: 8, top: 2, bottom: 1),
-      //               color: Colors.grey.withOpacity(0.33),
-      //               child: Text(
-      //                 snaps[index]["CreatedBy"],
-      //                 style: TextStyle(color: Colors.white),
-      //               )),
-      //         ),
-      //         onTap: () {
-      //           /// lead to specific gridTile page
-      //         },
-      //       );
-      //     }),
+      body: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, crossAxisSpacing: 6, mainAxisSpacing: 8),
+          itemCount: snaps.length,
+          itemBuilder: (context, int index) {
+            return GestureDetector(
+              child: GridTile(
+                child: Ink.image(
+                  image: NetworkImage(snaps[index]["imageUrl"]),
+                  fit: BoxFit.cover,
+                ),
+                footer: Container(
+                    padding: EdgeInsets.only(left: 8, top: 2, bottom: 1),
+                    color: Colors.grey.withOpacity(0.33),
+                    child: Text(
+                      snaps[index]["CreatedBy"],
+                      style: TextStyle(color: Colors.white),
+                    )),
+              ),
+              onTap: () {
+                /// lead to specific gridTile page
+              },
+            );
+          }),
     );
   }
 }
