@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:code_glamour/Views/Profile/Chat/video_join.dart';
 import 'package:code_glamour/Widgets/ChatBubble.dart';
 import 'package:code_glamour/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -60,7 +61,7 @@ class _ChatHomeState extends State<ChatHome> {
         child: Column(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.87,
+              height: MediaQuery.of(context).size.height * 0.85,
               child: StreamBuilder(
                 stream: journalStream,
                 builder: (BuildContext context,
@@ -87,7 +88,19 @@ class _ChatHomeState extends State<ChatHome> {
                 },
               ),
             ),
-            SizedBox(height: 35),
+            GestureDetector(
+              child: Chip(
+                backgroundColor: Colors.white,
+                elevation: 4.0,
+                label: Icon(
+                  Icons.videocam_outlined,
+                  color: clr1,
+                ),
+              ),
+              onTap: () {
+                Get.to(() => IndexPage());
+              },
+            ),
             Container(
               child: ListTile(
                 title: Container(
