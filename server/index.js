@@ -43,7 +43,7 @@ app.post("/webhook", (req,res) => {
             res.send(JSON.stringify({
             "fulfillmentMessages":[{
             "text" : {
-                "text" : [`Designer email for ${response} outfits: ${name}`]
+                "text" : [`Designer's email ID for ${response} outfits: ${name}`]
                     }
                 }]
             }));

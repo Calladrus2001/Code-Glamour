@@ -4,6 +4,7 @@ import 'package:code_glamour/Widgets/ChatBubble.dart';
 import 'package:code_glamour/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class ChatHome extends StatefulWidget {
@@ -88,18 +89,33 @@ class _ChatHomeState extends State<ChatHome> {
                 },
               ),
             ),
-            GestureDetector(
-              child: Chip(
-                backgroundColor: Colors.white,
-                elevation: 4.0,
-                label: Icon(
-                  Icons.videocam_outlined,
-                  color: clr1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  child: Chip(
+                    backgroundColor: Colors.white,
+                    elevation: 4.0,
+                    label: Icon(
+                      Icons.videocam_outlined,
+                      color: clr1,
+                    ),
+                  ),
+                  onTap: () {
+                    Get.to(() => IndexPage());
+                  },
                 ),
-              ),
-              onTap: () {
-                Get.to(() => IndexPage());
-              },
+                SizedBox(width: 8),
+                Chip(
+                  elevation: 4.0,
+                  backgroundColor: Colors.white,
+                  label: Icon(
+                    FontAwesomeIcons.userAstronaut,
+                    size: 16,
+                    color: clr1,
+                  ),
+                )
+              ],
             ),
             Container(
               child: ListTile(

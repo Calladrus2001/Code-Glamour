@@ -121,6 +121,7 @@ class _AddExhibitState extends State<AddExhibit> {
                     "imageUrl": downloadUrl
                   });
                   Navigator.pop(context);
+                  Navigator.pop(context);
                 },
               )
             ],
